@@ -91,12 +91,33 @@
     <script>
         async function loadNews() {
             try {
+                // Log the URL we're trying to fetch
+                console.log('Fetching news from ./news/');
+
                 const response = await fetch('./news/');
+                
+                // If the fetch fails, it will not return a response and will throw an error
+                if (!response.ok) {
+                    throw new Error(`Failed to load directory: ${response.statusText}`);
+                }
+
                 const text = await response.text();
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(text, 'text/html');
+                
+                // Select all links ending in .html but not index.html
                 const links = Array.from(doc.querySelectorAll('a'))
                     .filter(link => link.href.endsWith('.html') && link.href !== 'index.html');
+
+                if (links.length === 0) {
+                    console.warn('No news articles found in ./news/ directory');
+                    document.getElementById('newsGrid').innerHTML = `
+                        <div style="grid-column: 1/-1; text-align: center; color: #666;">
+                            No news articles found. Please make sure you have HTML files in the ./news/ directory.
+                        </div>
+                    `;
+                    return;
+                }
 
                 const newsGrid = document.getElementById('newsGrid');
 
