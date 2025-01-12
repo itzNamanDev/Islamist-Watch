@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .min-h-screen {
+            min-height: 100vh;
+        }
+
+        .bg-background {
+            background-color: #f4f4f4;
+        }
+
+        .hero-section {
+            position: relative;
+            height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-image {
+            position: absolute;
+            inset: 0;
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+        }
+
+        .mission-statement {
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .mission-statement .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .mission-statement h2 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+
+        .mission-statement p {
+            font-size: 1.125rem;
+            color: #666;
+        }
+
+        .team-section {
+            background-color: #f0f0f0;
+            padding: 4rem 2rem;
+        }
+
+        .team-section .container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .team-section h2 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+        }
+
+        .team-section .team-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .team-member {
+            background-color: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 100%;
+            max-width: 350px;
+        }
+
+        .team-member img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .team-member h3 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+
+        .team-member p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-section {
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .cta-section .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.125rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            font-size: 1.25rem;
+            border-radius: 0.25rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen bg-background">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <img src="../img/placeholder.svg?height=1080&width=1920" alt="Team working together" class="hero-image">
+            <div class="overlay"></div>
+            <div class="hero-content">
+                <h1>About Us</h1>
+                <p>Crafting Digital Experiences Since 20**</p>
+            </div>
+        </section>
+
+        <!-- Mission Statement -->
+        <section class="mission-statement">
+            <div class="container">
+                <h2>Our Mission</h2>
+                <p>We are dedicated to bring our work together in one place as a database for public, so it can control online hatred and racism.</p>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="team-section">
+            <div class="container">
+                <h2>Meet Our Team</h2>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <img src="../img/aboutplaceholder.png" alt="Naman">
+                        <h3>Naman</h3>
+                        <p>CEO & Founder</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="cta-section">
+            <div class="container">
+                <h2>Ready to Work With Us?</h2>
+                <p>Let's collaborate to bring your digital vision to life. Our team is ready to help you achieve your goals.</p>
+                <a href="#" class="cta-button">Get in Touch</a>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // You can add additional JavaScript if needed, but this simple structure doesn't require any JavaScript for functionality.
+    </script>
+</body>
+</html>

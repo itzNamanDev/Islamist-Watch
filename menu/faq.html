@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: linear-gradient(to bottom right, #9c27b0, #e91e63, #f44336);
+            color: white;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        .search-container {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+        #searchInput {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.5rem;
+            border: none;
+            border-radius: 9999px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 1rem;
+        }
+        #searchInput::placeholder {
+            color: rgba(255, 255, 255, 0.75);
+        }
+        #searchInput:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+        }
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.75;
+        }
+        .faq-item {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: all 0.3s ease-in-out;
+        }
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .faq-answer {
+            padding: 0 1rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+        }
+        .faq-answer.open {
+            padding: 1rem;
+            max-height: 1000px;
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        .icon {
+            width: 24px;
+            height: 24px;
+            transition: transform 0.3s ease-in-out;
+        }
+        .icon.open {
+            transform: rotate(45deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Frequently Asked Questions</h1>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search FAQs...">
+            <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+        </div>
+        <div id="faqContainer"></div>
+    </div>
+
+    <script>
+        const faqs = [
+            {
+                question: "What is the purpose of this website?",
+                answer: "This website aims to provide awareness about accounts and individuals who promote anti-Hindu sentiments, enabling people to identify harmful content and take appropriate action, whether it's reporting, counteracting misinformation, or joining discussions to defend Hinduism."
+            },
+            {
+                question: "How do you identify anti-Hindu accounts?",
+                answer: "We carefully analyze the content shared by accounts, focusing on posts that misrepresent, attack, or spread hatred against Hinduism, its values, and its people. Accounts that consistently promote these harmful narratives are flagged for inclusion."
+            },
+            {
+                question: "Can I report an account for inclusion?",
+                answer: "Yes, you can submit accounts for review through our reporting system. However, please ensure that your submission includes clear evidence of anti-Hindu content to be considered."
+            },
+            {
+                question: "Is this website promoting hate against specific individuals?",
+                answer: "No, the goal of this website is not to promote hate or harassment against individuals. It is to raise awareness about harmful narratives and foster a more informed and respectful dialogue regarding Hinduism."
+            },
+            {
+                question: "What payment methods do you accept?",
+                answer: "We are currently non-profit organization working to establish dharma."
+            },
+            {
+                question: "Can I challenge the inclusion of an account on the list?",
+                answer: "Yes, if you believe an account has been wrongly included, you can submit a request for review. We will re-examine the account based on the evidence provided."
+            },
+            {
+                question: "How is the information verified before posting?",
+                answer: "We employ a team of moderators who review each case thoroughly, ensuring that any account listed is genuinely promoting anti-Hindu content. We also rely on credible sources and documentation to support our claims."
+            },
+            {
+                question: "How do I protect myself from anti-Hindu content?",
+                answer: "You can stay informed about these accounts, report offensive content to the platform administrators, and educate others about recognizing harmful narratives. Additionally, engage in discussions that promote positive representation of Hinduism."
+            },
+            {
+                question: " What should I do if I am targeted by an anti-Hindu account?",
+                answer: "If you are targeted, report the account to the platform, block the account, and consider seeking legal advice if harassment continues. Our website also provides resources for handling such situations."
+            },
+            {
+                question: "Will this website be updated regularly?",
+                answer: "Yes, we regularly update the list and posts to ensure that the information remains relevant and accurate. We encourage users to stay connected for the latest updates."
+            },
+            {
+                question: "Can this website be used for educational purposes?",
+                answer: "Absolutely! This website serves as an educational tool to help individuals understand the impact of anti-Hindu content and learn how to respond to it effectively."
+            },
+            {
+                question: "Is the website affiliated with any political or religious organization?",
+                answer: "No, this website is not affiliated with any political or religious organization. It is dedicated to promoting awareness and protecting the integrity of Hinduism from harmful narratives."
+            },
+            {
+                question: "What actions are taken against the listed accounts?",
+                answer: "The website provides details on how to report such accounts to platform administrators or authorities. We also encourage legal actions where applicable, but the website itself does not directly intervene in such cases."
+            }
+        ];
+
+        const faqContainer = document.getElementById('faqContainer');
+        const searchInput = document.getElementById('searchInput');
+
+        function createFAQItem(faq, index) {
+            const faqItem = document.createElement('div');
+            faqItem.className = 'faq-item';
+            faqItem.innerHTML = `
+                <div class="faq-question" onclick="toggleFAQ(${index})">
+                    ${faq.question}
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="8" x2="12" y2="16"></line>
+                        <line x1="8" y1="12" x2="16" y2="12"></line>
+                    </svg>
+                </div>
+                <div class="faq-answer">${faq.answer}</div>
+            `;
+            return faqItem;
+        }
+
+        function renderFAQs(faqsToRender) {
+            faqContainer.innerHTML = '';
+            faqsToRender.forEach((faq, index) => {
+                faqContainer.appendChild(createFAQItem(faq, index));
+            });
+        }
+
+        function toggleFAQ(index) {
+            const faqItems = document.querySelectorAll('.faq-item');
+            const faqItem = faqItems[index];
+            const answer = faqItem.querySelector('.faq-answer');
+            const icon = faqItem.querySelector('.icon');
+
+            faqItems.forEach((item, i) => {
+                if (i !== index) {
+                    item.querySelector('.faq-answer').classList.remove('open');
+                    item.querySelector('.icon').classList.remove('open');
+                }
+            });
+
+            answer.classList.toggle('open');
+            icon.classList.toggle('open');
+        }
+
+        function filterFAQs() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const filteredFAQs = faqs.filter(faq => 
+                faq.question.toLowerCase().includes(searchTerm) ||
+                faq.answer.toLowerCase().includes(searchTerm)
+            );
+            renderFAQs(filteredFAQs);
+        }
+
+        searchInput.addEventListener('input', filterFAQs);
+
+        renderFAQs(faqs);
+    </script>
+</body>
+</html>

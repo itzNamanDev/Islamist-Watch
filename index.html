@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Islamist Watch</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script src="https://unpkg.com/unlazy@0.11.3/dist/unlazy.with-hashing.iife.js" defer init></script>
+    <script type="text/javascript">
+      window.tailwind.config = {
+        darkMode: ['class'],
+        theme: {
+          extend: {
+            colors: {
+              border: 'hsl(var(--border))',
+              input: 'hsl(var(--input))',
+              ring: 'hsl(var(--ring))',
+              background: 'hsl(var(--background))',
+              foreground: 'hsl(var(--foreground))',
+              primary: {
+                DEFAULT: 'hsl(var(--primary))',
+                foreground: 'hsl(var(--primary-foreground))',
+              },
+              secondary: {
+                DEFAULT: 'hsl(var(--secondary))',
+                foreground: 'hsl(var(--secondary-foreground))',
+              },
+              destructive: {
+                DEFAULT: 'hsl(var(--destructive))',
+                foreground: 'hsl(var(--destructive-foreground))',
+              },
+              muted: {
+                DEFAULT: 'hsl(var(--muted))',
+                foreground: 'hsl(var(--muted-foreground))',
+              },
+              accent: {
+                DEFAULT: 'hsl(var(--accent))',
+                foreground: 'hsl(var(--accent-foreground))',
+              },
+              popover: {
+                DEFAULT: 'hsl(var(--popover))',
+                foreground: 'hsl(var(--popover-foreground))',
+              },
+              card: {
+                DEFAULT: 'hsl(var(--card))',
+                foreground: 'hsl(var(--card-foreground))',
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <style type="text/tailwindcss">
+      @layer base {
+        :root {
+          --background: 0 0% 100%;
+          --foreground: 240 10% 3.9%;
+          --card: 0 0% 100%;
+          --card-foreground: 240 10% 3.9%;
+          --popover: 0 0% 100%;
+          --popover-foreground: 240 10% 3.9%;
+          --primary: 240 5.9% 10%;
+          --primary-foreground: 0 0% 98%;
+          --secondary: 240 4.8% 95.9%;
+          --secondary-foreground: 240 5.9% 10%;
+          --muted: 240 4.8% 95.9%;
+          --muted-foreground: 240 3.8% 46.1%;
+          --accent: 210 79% 46%;
+          --accent-foreground: 240 5.9% 10%;
+          --destructive: 0 84.2% 60.2%;
+          --destructive-foreground: 0 0% 98%;
+          --border: 240 5.9% 90%;
+          --input: 240 5.9% 90%;
+          --ring: 240 5.9% 10%;
+          --radius: 0.5rem;
+        }
+        .dark {
+          --background: 240 10% 3.9%;
+          --foreground: 0 0% 98%;
+          --card: 240 10% 3.9%;
+          --card-foreground: 0 0% 98%;
+          --popover: 240 10% 3.9%;
+          --popover-foreground: 0 0% 98%;
+          --primary: 0 0% 98%;
+          --primary-foreground: 240 5.9% 10%;
+          --secondary: 240 3.7% 15.9%;
+          --secondary-foreground: 0 0% 98%;
+          --muted: 240 3.7% 15.9%;
+          --muted-foreground: 240 5% 64.9%;
+          --accent: 210 79% 46%;
+          --accent-foreground: 0 0% 98%;
+          --destructive: 0 62.8% 30.6%;
+          --destructive-foreground: 0 0% 98%;
+          --border: 240 3.7% 15.9%;
+          --input: 240 3.7% 15.9%;
+          --ring: 240 4.9% 83.9%;
+        }
+      }
+
+      /* Increased opacity for heading and card headers */
+      h1 {
+    color: black;
+    font-size: 24px;
+    font-weight: bold;
+      }
+
+      .profile-item h2 {
+        color: black;
+        font-size: 18px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body class="transition-colors duration-300">
+    <header class="bg-primary py-4 px-6 flex justify-between items-center">
+      <div class="text-primary-foreground text-2xl font-bold">Islamist Watch</div>
+      <nav>
+        <ul class="flex space-x-4">
+          <li><a href="#" class="text-primary-foreground hover:text-primary-foreground/80">Home</a></li>
+          <li><a href="./menu/about.html" class="text-primary-foreground hover:text-primary-foreground/80">About</a></li>
+          <li><a href="./menu/contactus.html" class="text-primary-foreground hover:text-primary-foreground/80">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="relative">
+        <input type="text" id="search" placeholder="Search..." class="bg-primary-foreground text-primary-foreground px-4 py-2 rounded-lg shadow-md w-48 focus:outline-none focus:ring-2 focus:ring-accent">
+        <img src="https://img.icons8.com/?size=100&id=44045&format=png&color=000000" alt="Search Icon" class="absolute right-2 top-2 w-6 h-6">
+      </div>
+    </header>
+    <main class="bg-background min-h-screen p-6">
+      <div class="max-w-4xl mx-auto">
+        <h1 class="text-3xl font-bold mb-4">People with Radical Ideology</h1>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="profileGrid">
+          <div class="bg-card p-4 rounded-lg shadow-md profile-item">
+            <img
+              src="https://pbs.twimg.com/profile_images/1861543447343095808/gjXejybw_400x400.jpg"
+              alt="Lord Miles"
+              class="w-full h-40 object-cover rounded-lg mb-4"
+            />
+            <h2 class="text-lg font-bold mb-2">Lord Miles</h2>
+            <p class="text-sm text-muted-foreground">Lord Miles is an anti-Hindu, hatemonger who usually posts provocative stuff on X.</p>
+            <a href="./hitlist/lord_miles.html" class="block mt-2 text-accent hover:text-accent-foreground">View Profile</a>
+          </div>
+          <div class="bg-card p-4 rounded-lg shadow-md profile-item">
+            <img
+              src=""
+              alt="Person 2"
+              class="w-full h-40 object-cover rounded-lg mb-4"
+            />
+            <h2 class="text-lg font-bold mb-2">Person 2</h2>
+            <p class="text-sm text-muted-foreground">Description of Person 2</p>
+            <a href="#" class="block mt-2 text-accent hover:text-accent-foreground">View Profile</a>
+          </div>
+          <div class="bg-card p-4 rounded-lg shadow-md profile-item">
+            <img
+              src=""
+              alt="Person 3"
+              class="w-full h-40 object-cover rounded-lg mb-4"
+            />
+            <h2 class="text-lg font-bold mb-2">Person 3</h2>
+            <p class="text-sm text-muted-foreground">Description of Person 3</p>
+            <a href="#" class="block mt-2 text-accent hover:text-accent-foreground">View Profile</a>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="bg-primary py-4 px-6 mt-8">
+      <div class="text-primary-foreground text-sm text-center">
+        <ul class="flex justify-center space-x-4">
+          <li><a href="./menu/about.html" class="hover:text-primary-foreground/80">About Us</a></li>
+          <li><a href="mailto:gbhremilio@proton.me" class="hover:text-primary-foreground/80">Email</a></li>
+          <li><a href="./menu/contactus.html" class="hover:text-primary-foreground/80">Contact Us</a></li>
+          <li><a href="./menu/faq.html" class="hover:text-primary-foreground/80">FAQs</a></li>
+        </ul>
+      </div>
+    </footer>
+    <script>
+      // Basic search functionality (can be extended)
+      document.getElementById('search').addEventListener('input', function(event) {
+        const query = event.target.value.toLowerCase();
+        const profiles = document.querySelectorAll('.profile-item');
+        
+        profiles.forEach(profile => {
+          const name = profile.querySelector('h2').textContent.toLowerCase();
+          if (name.includes(query)) {
+            profile.style.display = 'block';
+          } else {
+            profile.style.display = 'none';
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
