@@ -1,8 +1,284 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Arrest Campaigns</title>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
+    <title>Arrest Campaign</title>
+    <style>
+        :root {
+            --primary-color: #0a2472;
+            --secondary-color: #1e50a2;
+            --accent-color: #ff6b35;
+            --text-color: #ffffff;
+            --background-color: #001233;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        header {
+            background-color: var(--primary-color);
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        h1 {
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            margin: 0;
+        }
+        nav button {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            cursor: pointer;
+            font-size: 1rem;
+            margin-left: 1rem;
+            transition: color 0.3s ease;
+        }
+        nav button:hover {
+            color: var(--accent-color);
+        }
+        main {
+            padding: 2rem 0;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .badge {
+            background-color: var(--accent-color);
+            color: var(--text-color);
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            display: inline-flex;
+            align-items: center;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .card {
+            background-color: var(--secondary-color);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card h4 {
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            color: var(--accent-color);
+        }
+        input, textarea, button {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            background-color: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: var(--text-color);
+            border-radius: 0.25rem;
+            transition: border-color 0.3s ease;
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+        button[type="submit"] {
+            background-color: var(--accent-color);
+            border: none;
+            color: var(--text-color);
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button[type="submit"]:hover {
+            background-color: #e55a2b;
+        }
+        footer {
+            background-color: var(--primary-color);
+            padding: 1rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+        .success-message {
+            color: #4caf50;
+            margin-top: 0.5rem;
+            font-weight: bold;
+        }
+        .share-icons {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 1rem;
+        }
+        .share-icons a {
+            margin-left: 0.5rem;
+            color: var(--text-color);
+            transition: color 0.3s ease;
+        }
+        .share-icons a:hover {
+            color: var(--accent-color);
+        }
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.5rem;">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+                Islamist Watch
+            </h1>
+            <nav>
+                <button>Home</button>
+                <button>Wanted List</button>
+                <button>Report Crime</button>
+                <button>About Us</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="text-center">
+            <h2>Operation TOTAL SULLA 🔪🩸</h2>
+            <p>Join forces with law enforcement to apprehend cyber criminals and secure our digital world.</p>
+            <div class="badge">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.5rem;">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
+                Active Investigation
+            </div>
+        </section>
+
+        <section>
+            <h3>Most Wanted Cyber Criminals</h3>
+            <input type="text" id="searchInput" placeholder="Search by name, alias, or crime...">
+            <div id="criminalsList" class="grid"></div>
+        </section>
+
+        <section>
+            <h3>Submit a Confidential Tip</h3>
+            <form id="tipForm">
+                <input type="text" placeholder="Your Name (Optional)">
+                <input type="email" placeholder="Your Email (Optional)">
+                <textarea placeholder="Provide details about the cyber criminal or illegal online activity..." required></textarea>
+                <button type="submit">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.5rem;">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    Submit Confidential Tip
+                </button>
+            </form>
+            <p id="successMessage" class="success-message" style="display: none;">Thank you for your tip. Our cyber investigation team will review it promptly.</p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Islamist Watch. All rights reserved. | Protecting Our Digital Future</p>
+        </div>
+    </footer>
+
+    <script>
+        const criminals = [
+            { id: 1, name: "John Doe", alias: "ByteBandit", crime: "Phishing Scams" },
+            { id: 2, name: "Jane Smith", alias: "CryptoQueen", crime: "Cryptocurrency Fraud" },
+            { id: 3, name: "Mike Johnson", alias: "ShadowHacker", crime: "Data Breaches" },
+            { id: 4, name: "Sarah Williams", alias: "MalwareMinx", crime: "Ransomware Distribution" },
+        ];
+
+        function renderCriminals(criminals) {
+            const criminalsListElement = document.getElementById('criminalsList');
+            criminalsListElement.innerHTML = criminals.map(criminal => `
+                <div class="card">
+                    <h4>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.5rem;">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                        ${criminal.name}
+                    </h4>
+                    <p><strong>Alias:</strong> ${criminal.alias}</p>
+                    <p><strong>Crime:</strong> ${criminal.crime}</p>
+                    <div class="share-icons">
+                        <a href="#" onclick="shareOnTwitter('${criminal.name}', '${criminal.alias}', '${criminal.crime}')">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" onclick="shareOnTelegram('${criminal.name}', '${criminal.alias}', '${criminal.crime}')">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const filteredCriminals = criminals.filter(criminal => 
+                criminal.name.toLowerCase().includes(searchTerm) ||
+                criminal.alias.toLowerCase().includes(searchTerm) ||
+                criminal.crime.toLowerCase().includes(searchTerm)
+            );
+            renderCriminals(filteredCriminals);
+        });
+
+        document.getElementById('tipForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('successMessage').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('successMessage').style.display = 'none';
+            }, 3000);
+        });
+
+        function shareOnTwitter(name, alias, crime) {
+            const text = `Help catch cyber criminal ${name} (${alias}) wanted for ${crime}. #IslamistWatch #Arrest${name}`;
+            const url = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(text);
+            window.open(url, '_blank');
+        }
+
+        function shareOnTelegram(name, alias, crime) {
+            const text = `Help catch cyber criminal ${name} (${alias}) wanted for ${crime}. #IslamistWatch #Arrest${name}`;
+            const url = 'https://t.me/share/url?url=' + encodeURIComponent(window.location.href) + '&text=' + encodeURIComponent(text);
+            window.open(url, '_blank');
+        }
+
+        renderCriminals(criminals);
+    </script>
+</body>
 </html>
